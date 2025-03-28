@@ -10,7 +10,7 @@ export const additionalCyberpunkRecipes: Recipe[] = [
     ingredients: [
       { name: 'Quantum-state protein patty', quantity: '1', notes: 'Lab-grown with state-shifting proteins' },
       { name: 'Reality-bending bun', quantity: '1', notes: 'Spliced with perception-altering compounds' },
-      { name: 'Schrödinger's cheese', quantity: '2 slices', notes: 'Both melted and solid simultaneously' },
+      { name: 'Schrödinger\'s cheese', quantity: '2 slices', notes: 'Both melted and solid simultaneously' },
       { name: 'Paradox sauce', quantity: '2 tbsp', notes: 'Sweet and spicy at the same time' },
       { name: 'Probability lettuce', quantity: '1 leaf', notes: 'Harvested from quantum farms' },
       { name: 'Uncertainty tomato', quantity: '2 slices', notes: 'Position and flavor cannot be simultaneously known' },
@@ -28,7 +28,7 @@ export const additionalCyberpunkRecipes: Recipe[] = [
       { instructions: 'Sprinkle neural-interface sesame seeds as you take your first bite.', note: 'Each person will experience a completely different burger based on their brainwave patterns.' }
     ],
     cookingTime: 'Both 15 minutes and 3 hours simultaneously',
-    servings: 'Either 1 or 0',
+    servings: 1,
     difficulty: 'Medium',
     era: 'cyberpunk',
     tags: ['quantum', 'reality-bending', 'fast food']
