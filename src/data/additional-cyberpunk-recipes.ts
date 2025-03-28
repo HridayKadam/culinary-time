@@ -22,7 +22,7 @@ export const additionalCyberpunkRecipes: Recipe[] = [
       { instructions: 'Heat non-Euclidean grill to exactly 101°C in this dimension.', note: 'The temperature will appear different depending on your perspective.' },
       { instructions: 'Place quantum patty on grill until it reaches the uncertain state.', note: 'The patty should flicker between rare and well-done.' },
       { instructions: 'Apply Schrödinger's cheese and observe without measuring until it exists in dual states.' },
-      { instructions: 'Toast reality-bending bun until the probability function collapses.', note: 'You'll know it's ready when you can't tell if it's toasted or not.' },
+      { instructions: 'Toast reality-bending bun until the probability function collapses.', note: 'You\'ll know it\'s ready when you can\'t tell if it\'s toasted or not.' },
       { instructions: 'Layer paradox sauce on both bun halves using a quantum spatula.' },
       { instructions: 'Assemble burger in reversed order from how you think it should be.', note: 'This creates the quantum entanglement necessary for flavor shifting.' },
       { instructions: 'Sprinkle neural-interface sesame seeds as you take your first bite.', note: 'Each person will experience a completely different burger based on their brainwave patterns.' }
@@ -53,7 +53,7 @@ export const additionalCyberpunkRecipes: Recipe[] = [
       { instructions: 'Apply 9 bars of pressure through the grounds for exactly 24.7 seconds.', note: 'This pressurization sequence encodes your specific cognitive enhancement pattern.' },
       { instructions: 'Dissolve your personal neural-stimulating sweetener capsule.', note: 'Each capsule is uniquely keyed to your neural pathways.' },
       { instructions: 'Apply biometric authentication spice in a fractal pattern on top.', note: 'The pattern should match your unique thought signature.' },
-      { instructions: 'Add memory-enhancing milk foam if additional recall is needed for today's tasks.' },
+      { instructions: 'Add memory-enhancing milk foam if additional recall is needed for today\'s tasks.' },
       { instructions: 'Consume within 127 seconds before encryption expires.', note: 'Effects include 4-8 hours of accelerated cognition with proper authorization.' }
     ],
     cookingTime: '4.7 minutes',
@@ -85,7 +85,7 @@ export const additionalCyberpunkRecipes: Recipe[] = [
       { instructions: 'Add encryption herbs and authentication salt when cheese is 70% melted.' },
       { instructions: 'Increase heat and add neural-firewall chili according to current threat level.' },
       { instructions: 'Maintain at precisely 71°C to keep security protocols active.', note: 'Temperature fluctuations may create vulnerabilities.' },
-      { instructions: 'Serve immediately with intrusion-detection breadcubes and biometric vegetable array.', note: 'Each guest must authenticate before dipping by touching the pot's integrated scanner.' },
+      { instructions: 'Serve immediately with intrusion-detection breadcubes and biometric vegetable array.', note: 'Each guest must authenticate before dipping by touching the pot\'s integrated scanner.' },
       { instructions: 'If the cheese ever separates, a security breach has occurred. Dispose of immediately.' }
     ],
     cookingTime: '30 minutes',

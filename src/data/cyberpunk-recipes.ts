@@ -113,7 +113,7 @@ export const cyberpunkRecipes: Recipe[] = [
       { instructions: 'Calibrate your smart plate by scanning your retina.', note: 'This allows the plate to read your current emotional state.' },
       { instructions: 'Layer smart corn chips on the plate in a specific geometric pattern.', note: 'The pattern helps optimize the nanite distribution.' },
       { instructions: 'Heat mood-sensing cheese sauce to exactly 63°C and pour over chips.' },
-      { instructions: 'Add synth-bean protein while it's still reconfiguring for optimal texture.' },
+      { instructions: 'Add synth-bean protein while it\'s still reconfiguring for optimal texture.' },
       { instructions: 'Layer neuro-salsa, lab-grown guacamole, and serotonin-boosting sour cream in triangular segments.' },
       { instructions: 'Scatter dopamine jalapeños and biochemical cilantro across the top.' },
       { instructions: 'Allow the dish 30 seconds to scan and adapt to your brain chemistry before eating.', note: 'You may notice the colors shifting slightly as it calibrates.' },
@@ -149,7 +149,7 @@ export const cyberpunkRecipes: Recipe[] = [
       { instructions: 'Wrap with programmed nori, using remaining circuit paste at the seam to complete the circuit.' },
       { instructions: 'Arrange on a conductive plate and activate by drizzling with a few drops of memory-enhancing soy sauce.' },
       { instructions: 'Garnish with flavor-amplifying microgreens and serve with digital wasabi and smart ginger.' },
-      { instructions: 'The holographic display will activate when the diner's chopsticks (or neural fork) make contact with the sushi.' }
+      { instructions: 'The holographic display will activate when the diner\'s chopsticks (or neural fork) make contact with the sushi.' }
     ],
     cookingTime: '25 minutes',
     servings: 2,
