@@ -1,59 +1,58 @@
-export const additionalApocalypticRecipes = [
+
+import { Recipe } from '../types/recipe';
+
+export const additionalApocalypticRecipes: Recipe[] = [
   {
-    id: 'scavenger-stew',
-    name: 'Scavenger Stew',
+    id: 'apocalyptic-6',
+    title: 'Scavenger Stew',
     slug: 'scavenger-stew',
-    era: 'apocalyptic',
-    image: 'https://placehold.co/400x300',
     description: 'A hearty stew made from foraged ingredients and scavenged goods, perfect for surviving the wasteland.',
     ingredients: [
-      'Assorted foraged vegetables (roots, greens, tubers)',
-      'Canned goods (beans, tomatoes, corn)',
-      'Dried meats or jerky',
-      'Bone broth or water',
-      'Foraged herbs and spices'
+      { name: 'Assorted vegetables', quantity: '2 cups', notes: 'Foraged roots, greens, tubers' },
+      { name: 'Canned goods', quantity: '1 cup', notes: 'Beans, tomatoes, corn' },
+      { name: 'Dried meats or jerky', quantity: '1/2 pound' },
+      { name: 'Bone broth or water', quantity: '4 cups' },
+      { name: 'Foraged herbs and spices', quantity: '1 tbsp', notes: 'Whatever is available' }
     ],
-    instructions: [
-      'Prepare the foraged vegetables by cleaning and chopping them into bite-sized pieces.',
-      'In a large pot, combine the vegetables, canned goods, dried meats, and bone broth or water.',
-      'Bring the stew to a boil, then reduce heat and simmer for at least 30 minutes, or until the vegetables are tender and the flavors have melded.',
-      'Season with foraged herbs and spices to taste.',
-      'Serve hot and enjoy the nourishing flavors of the wasteland.'
+    steps: [
+      { instructions: 'Prepare the foraged vegetables by cleaning and chopping them into bite-sized pieces.' },
+      { instructions: 'In a large pot, combine the vegetables, canned goods, dried meats, and bone broth or water.' },
+      { instructions: 'Bring the stew to a boil, then reduce heat and simmer for at least 30 minutes.', note: 'Simmer until vegetables are tender and flavors have melded.' },
+      { instructions: 'Season with foraged herbs and spices to taste.' },
+      { instructions: 'Serve hot and enjoy the nourishing flavors of the wasteland.' }
     ],
-    cookingTime: 45,
+    cookingTime: '45 minutes',
     servings: 4,
     difficulty: 'Easy',
-    tags: ['stew', 'foraging', 'survival', 'vegetarian-friendly'],
-    source: 'Wasteland Cookbooks'
+    era: 'apocalyptic',
+    tags: ['vegetarian-friendly', 'survival', 'foraging']
   },
   {
-    id: 'waste-not-wraps',
-    name: 'Waste-Not Wraps',
+    id: 'apocalyptic-7',
+    title: 'Waste-Not Wraps',
     slug: 'waste-not-wraps',
-    era: 'apocalyptic',
-    image: 'https://placehold.co/400x300',
     description: 'Creative wraps made from leftover ingredients and foraged greens, minimizing waste and maximizing flavor.',
     ingredients: [
-      'Leftover cooked grains (rice, quinoa, barley)',
-      'Cooked or canned beans',
-      'Chopped vegetables (fresh or preserved)',
-      'Foraged edible greens',
-      'Salvaged tortillas or flatbreads',
-      'Optional: Scraps of cooked meat or fish'
+      { name: 'Leftover cooked grains', quantity: '1 cup', notes: 'Rice, quinoa, or barley' },
+      { name: 'Cooked or canned beans', quantity: '1/2 cup' },
+      { name: 'Chopped vegetables', quantity: '1 cup', notes: 'Fresh or preserved' },
+      { name: 'Foraged edible greens', quantity: '1 handful' },
+      { name: 'Salvaged tortillas or flatbreads', quantity: '2' },
+      { name: 'Cooked meat or fish', quantity: '1/4 cup', notes: 'Optional' }
     ],
-    instructions: [
-      'Gather your leftover cooked grains, beans, vegetables, and foraged greens.',
-      'If using, chop any larger pieces of vegetables or meat into smaller, more manageable sizes.',
-      'Warm the tortillas or flatbreads if desired.',
-      'Lay out a tortilla or flatbread and spread a layer of cooked grains and beans over the surface.',
-      'Top with chopped vegetables, foraged greens, and any optional meat or fish scraps.',
-      'Wrap the ingredients tightly in the tortilla or flatbread.',
-      'Serve immediately and enjoy the resourceful flavors of the wasteland.'
+    steps: [
+      { instructions: 'Gather your leftover cooked grains, beans, vegetables, and foraged greens.' },
+      { instructions: 'If using, chop any larger pieces of vegetables or meat into smaller, more manageable sizes.', note: 'This helps create an even texture in the wrap.' },
+      { instructions: 'Warm the tortillas or flatbreads if desired.' },
+      { instructions: 'Lay out a tortilla or flatbread and spread a layer of cooked grains and beans over the surface.' },
+      { instructions: 'Top with chopped vegetables, foraged greens, and any optional meat or fish.' },
+      { instructions: 'Wrap the ingredients tightly in the tortilla or flatbread.' },
+      { instructions: 'Serve immediately and enjoy the resourceful flavors of the wasteland.' }
     ],
-    cookingTime: 30,
+    cookingTime: '30 minutes',
     servings: 2,
     difficulty: 'Easy',
-    tags: ['wraps', 'leftovers', 'foraging', 'resourceful', 'vegetarian-friendly'],
-    source: 'Wasteland Survival Guide'
-  },
+    era: 'apocalyptic',
+    tags: ['wraps', 'leftovers', 'foraging', 'resourceful', 'vegetarian-friendly']
+  }
 ];
