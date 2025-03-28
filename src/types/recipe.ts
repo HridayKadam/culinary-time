@@ -21,6 +21,13 @@ export interface Recipe {
   servings: number;
   difficulty: 'Easy' | 'Medium' | 'Hard';
   era: 'medieval' | 'cyberpunk' | 'apocalyptic';
+  category?: string;
+  tags?: string[];
+  calories?: number;
+  protein?: string;
+  carbs?: string;
+  fat?: string;
   isSecret?: boolean;
   secretUnlockHint?: string;
+  featured?: boolean;
 }
