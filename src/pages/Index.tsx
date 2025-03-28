@@ -1,10 +1,11 @@
+
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import TimePortal from '../components/TimePortal';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
-import { BookOpen, Flame } from 'lucide-react';
+import { BookOpen, Flame, ScrollText } from 'lucide-react';
 
 const Index: React.FC = () => {
   useEffect(() => {
@@ -53,7 +54,7 @@ const Index: React.FC = () => {
                   </p>
                   <div className="mt-4 text-medieval-accent/80 flex items-center justify-end relative z-10">
                     <span className="text-sm mr-2">Explore</span>
-                    <Scroll className="h-4 w-4" />
+                    <ScrollText className="h-4 w-4" />
                   </div>
                 </motion.div>
               </Link>
@@ -121,7 +122,7 @@ const Index: React.FC = () => {
                 </p>
                 <Link to="/medieval/honey-cakes" className="text-medieval-accent hover:text-medieval-accent/80 text-sm flex items-center">
                   <span>View Recipe</span>
-                  <Scroll className="ml-2 h-4 w-4" />
+                  <ScrollText className="ml-2 h-4 w-4" />
                 </Link>
               </div>
               
