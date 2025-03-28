@@ -21,7 +21,7 @@ export const additionalCyberpunkRecipes: Recipe[] = [
       { instructions: 'Sync your neural taste implant with the cooking interface.', note: 'Required to experience the full dual-state effect.' },
       { instructions: 'Heat non-Euclidean grill to exactly 101°C in this dimension.', note: 'The temperature will appear different depending on your perspective.' },
       { instructions: 'Place quantum patty on grill until it reaches the uncertain state.', note: 'The patty should flicker between rare and well-done.' },
-      { instructions: 'Apply Schrödinger's cheese and observe without measuring until it exists in dual states.' },
+      { instructions: 'Apply Schrödinger\'s cheese and observe without measuring until it exists in dual states.' },
       { instructions: 'Toast reality-bending bun until the probability function collapses.', note: 'You\'ll know it\'s ready when you can\'t tell if it\'s toasted or not.' },
       { instructions: 'Layer paradox sauce on both bun halves using a quantum spatula.' },
       { instructions: 'Assemble burger in reversed order from how you think it should be.', note: 'This creates the quantum entanglement necessary for flavor shifting.' },
