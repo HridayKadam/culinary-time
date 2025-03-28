@@ -1,4 +1,3 @@
-
 import { Recipe } from '../types/recipe';
 
 export const recipes: Recipe[] = [
@@ -267,7 +266,7 @@ export const recipes: Recipe[] = [
       { instructions: 'Combine fruit mash with the liquid and simmer at exactly 92°C for 12 minutes.', note: 'Temperature control is critical—too high destroys nutrients, too low fails to preserve.' },
       { instructions: 'Add mint leaves during the final 2 minutes.' },
       { instructions: 'While still hot, transfer to sterilized glass containers and seal immediately.', note: 'A proper seal will create a vacuum as it cools, indicated by a slight depression in the lid.' },
-      { instructions: 'Bury containers in the cold earth of the northern cave for at least 30 days before using.', note: 'The cave's natural radiation-blocking properties enhance preservation.' },
+      { instructions: 'Bury containers in the cold earth of the northern cave for at least 30 days before using.', note: 'The cave\'s natural radiation-blocking properties enhance preservation.' },
       { instructions: 'Once opened, a jar must be consumed within 3 days or shared with other survivors.' }
     ],
     cookingTime: '30 days',
