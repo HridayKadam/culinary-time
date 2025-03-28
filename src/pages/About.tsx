@@ -1,7 +1,7 @@
 
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Github, Twitter, Linkedin, Mail, BookOpen, FlaskConical, Utensils } from 'lucide-react';
+import { Github, Twitter, Linkedin, Mail, BookOpen, FlaskConical, Utensils, Scroll as ScrollIcon } from 'lucide-react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 
@@ -98,7 +98,7 @@ const About: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="bg-background/30 p-6 rounded-lg text-center">
                 <div className="flex justify-center mb-3">
-                  <Scroll className="h-6 w-6 text-medieval-light" />
+                  <ScrollIcon className="h-6 w-6 text-medieval-light" />
                 </div>
                 <h4 className="text-lg font-bold mb-2">Medieval Era</h4>
                 <p className="text-sm text-muted-foreground">
