@@ -1,11 +1,10 @@
-
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import TimePortal from '../components/TimePortal';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
-import { Scroll, BookOpen, Flame } from 'lucide-react';
+import { BookOpen, Flame } from 'lucide-react';
 
 const Index: React.FC = () => {
   useEffect(() => {
