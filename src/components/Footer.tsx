@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { Heart } from 'lucide-react';
 
 const Footer: React.FC = () => {
@@ -33,7 +34,21 @@ const Footer: React.FC = () => {
           </p>
           
           <p className="text-sm text-muted-foreground flex items-center">
-            Made with <Heart size={14} className="mx-1 text-destructive" /> by Time Travelers
+            Made with{" "}
+            <motion.span
+              animate={{ 
+                scale: [1, 1.2, 1],
+              }}
+              transition={{ 
+                repeat: Infinity, 
+                duration: 1.5,
+                ease: "easeInOut"
+              }}
+              className="mx-1 inline-flex"
+            >
+              <Heart size={14} className="text-destructive" />
+            </motion.span>
+            {" "}by Hriday Kadam
           </p>
         </div>
       </div>

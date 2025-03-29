@@ -2,7 +2,7 @@
 /* ... existing styles ... */
 
 main {
-  padding-top: 100px; /* Increased padding to prevent content from being hidden under fixed header */
+  padding-top: 120px; /* Increased padding to prevent content from being hidden under fixed header */
   min-height: 100vh;
   width: 100%;
   position: relative;
@@ -27,7 +27,7 @@ section {
   position: relative;
   z-index: 10;
   margin-bottom: 4rem; /* Increased spacing between sections */
-  padding-top: 1.5rem; /* Add padding to top of sections */
+  padding-top: 2.5rem; /* Added more padding to top of sections */
 }
 
 /* Text spacing improvements */
