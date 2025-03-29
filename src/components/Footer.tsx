@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Github, Heart } from 'lucide-react';
+import { Heart } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
@@ -16,18 +16,6 @@ const Footer: React.FC = () => {
           </div>
           
           <div className="flex flex-col items-center md:items-end">
-            <div className="flex space-x-4 mb-4">
-              <a 
-                href="https://github.com/culinary-time-rifts" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="hover:text-primary transition-colors"
-                aria-label="GitHub"
-              >
-                <Github size={20} />
-              </a>
-            </div>
-            
             <div className="text-sm text-muted-foreground">
               <Link to="/about" className="hover:text-primary transition-colors mr-4">
                 About
@@ -45,7 +33,7 @@ const Footer: React.FC = () => {
           </p>
           
           <p className="text-sm text-muted-foreground flex items-center">
-            Made with <Heart size={14} className="mx-1 text-destructive" /> by Culinary Time Travelers
+            Made with <Heart size={14} className="mx-1 text-destructive" /> by Time Travelers
           </p>
         </div>
       </div>

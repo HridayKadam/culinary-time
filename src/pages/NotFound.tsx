@@ -20,7 +20,7 @@ const NotFound: React.FC = () => {
     <div className="min-h-screen flex flex-col bg-background">
       <Navigation />
       
-      <div className="flex-grow container mx-auto px-4 py-16 flex items-center justify-center">
+      <main className="flex-grow container mx-auto px-4 pt-32 flex items-center justify-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -38,7 +38,7 @@ const NotFound: React.FC = () => {
             Return to the Present
           </Link>
         </motion.div>
-      </div>
+      </main>
       
       <Footer />
     </div>

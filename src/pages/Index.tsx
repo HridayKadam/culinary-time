@@ -16,13 +16,8 @@ const Index: React.FC = () => {
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-background to-background/70">
       <Navigation />
       
-      {/* Hero Section */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        className="flex-grow"
-      >
+      {/* Main Content Container */}
+      <main className="flex-grow pt-24 md:pt-32"> {/* Increased top padding to prevent overlap */}
         <div className="container mx-auto px-4">
           {/* Time Portal */}
           <section className="py-12 md:py-16">
@@ -36,7 +31,7 @@ const Index: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="text-center space-y-6"
+              className="text-center space-y-8 pt-8" /* Added top padding */
             >
               <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-rift-light to-rift">
                 Explore Culinary Time Rifts
@@ -49,7 +44,7 @@ const Index: React.FC = () => {
             </motion.section>
               
             {/* Era Cards Section */}
-            <section>
+            <section className="pt-8"> {/* Added top padding */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <Link to="/medieval">
                   <motion.div 
@@ -152,7 +147,7 @@ const Index: React.FC = () => {
             </motion.section>
           </div>
         </div>
-      </motion.div>
+      </main>
       
       <Footer />
     </div>
