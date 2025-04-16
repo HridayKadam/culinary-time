@@ -2,7 +2,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Recipe, UserRecipe } from '../types/recipe';
 import { recipes as originalRecipes } from '../data/recipes';
-import { getLocalStorage, setLocalStorage } from '../utils/localStorage';
+import { getLocalStorage, setLocalStorage, addToRecentlyViewed, getRecentlyViewed } from '../utils/localStorage';
 import { v4 as uuidv4 } from 'uuid';
 import { toast } from '@/hooks/use-toast';
 
@@ -26,6 +26,20 @@ interface RecipeContextType {
   toggleFavorite: (recipeId: string) => void;
   isFavorite: (recipeId: string) => boolean;
   getFavorites: () => string[];
+  
+  // Recently viewed
+  addToRecentlyViewed: (recipeId: string) => void;
+  getRecentlyViewed: () => string[];
+  
+  // Recipe ratings
+  rateRecipe: (recipeId: string, rating: number) => void;
+  getRecipeRating: (recipeId: string) => number | undefined;
+  
+  // Cooking mode
+  enterCookingMode: (recipeId: string) => void;
+  exitCookingMode: () => void;
+  isInCookingMode: () => boolean;
+  getCurrentCookingRecipe: () => string | null;
 }
 
 const RecipeContext = createContext<RecipeContextType | undefined>(undefined);
@@ -33,14 +47,18 @@ const RecipeContext = createContext<RecipeContextType | undefined>(undefined);
 export const RecipeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [userRecipes, setUserRecipes] = useState<UserRecipe[]>([]);
   const [favorites, setFavorites] = useState<string[]>([]);
+  const [ratings, setRatings] = useState<Record<string, number>>({});
+  const [cookingModeRecipe, setCookingModeRecipe] = useState<string | null>(null);
 
   // Load data from localStorage on initial render
   useEffect(() => {
     const storedUserRecipes = getLocalStorage<UserRecipe[]>('userRecipes', []);
     const storedFavorites = getLocalStorage<string[]>('favoriteRecipes', []);
+    const storedRatings = getLocalStorage<Record<string, number>>('recipeRatings', {});
     
     setUserRecipes(storedUserRecipes);
     setFavorites(storedFavorites);
+    setRatings(storedRatings);
   }, []);
 
   // Save user recipes to localStorage whenever they change
@@ -52,6 +70,11 @@ export const RecipeProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   useEffect(() => {
     setLocalStorage('favoriteRecipes', favorites);
   }, [favorites]);
+
+  // Save ratings to localStorage whenever they change
+  useEffect(() => {
+    setLocalStorage('recipeRatings', ratings);
+  }, [ratings]);
 
   // Get all user created/modified recipes
   const getUserRecipes = () => userRecipes;
@@ -246,6 +269,46 @@ export const RecipeProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   // Get all favorite recipe IDs
   const getFavorites = () => favorites;
+  
+  // Recently viewed recipes
+  const addToRecentlyViewedRecipe = (recipeId: string) => {
+    addToRecentlyViewed(recipeId);
+  };
+  
+  const getRecentlyViewedRecipes = () => getRecentlyViewed();
+  
+  // Recipe ratings
+  const rateRecipe = (recipeId: string, rating: number) => {
+    if (rating < 1 || rating > 5) return;
+    
+    setRatings(prevRatings => {
+      const newRatings = { ...prevRatings, [recipeId]: rating };
+      toast({
+        title: "Recipe Rated",
+        description: `You rated this recipe ${rating} stars!`
+      });
+      return newRatings;
+    });
+  };
+  
+  const getRecipeRating = (recipeId: string) => ratings[recipeId];
+  
+  // Cooking mode
+  const enterCookingMode = (recipeId: string) => {
+    setCookingModeRecipe(recipeId);
+    toast({
+      title: "Cooking Mode Activated",
+      description: "Recipe instructions will be displayed in an easy-to-read format"
+    });
+  };
+  
+  const exitCookingMode = () => {
+    setCookingModeRecipe(null);
+  };
+  
+  const isInCookingMode = () => cookingModeRecipe !== null;
+  
+  const getCurrentCookingRecipe = () => cookingModeRecipe;
 
   const contextValue: RecipeContextType = {
     getUserRecipes,
@@ -259,7 +322,15 @@ export const RecipeProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     saveUserNotes,
     toggleFavorite,
     isFavorite,
-    getFavorites
+    getFavorites,
+    addToRecentlyViewed: addToRecentlyViewedRecipe,
+    getRecentlyViewed: getRecentlyViewedRecipes,
+    rateRecipe,
+    getRecipeRating,
+    enterCookingMode,
+    exitCookingMode,
+    isInCookingMode,
+    getCurrentCookingRecipe
   };
 
   return (

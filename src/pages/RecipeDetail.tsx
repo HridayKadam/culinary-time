@@ -9,12 +9,15 @@ import InstructionsSection from '../components/InstructionsSection';
 import NutritionSection from '../components/NutritionSection';
 import SecretRecipeMessage from '../components/SecretRecipeMessage';
 import UserNotes from '../components/UserNotes';
+import RecipeRating from '../components/RecipeRating';
+import CookingMode from '../components/CookingMode';
 import Footer from '../components/Footer';
 import { getRecipeBySlug } from '../data/recipes';
 import { Recipe } from '../types/recipe';
 import { useToast } from '@/hooks/use-toast';
 import { getEraType, getContainerClasses } from '../utils/eraStyles';
 import { useRecipe } from '../context/RecipeContext';
+import { motion } from 'framer-motion';
 
 const RecipeDetail: React.FC = () => {
   const { era, slug } = useParams<{ era: string; slug: string }>();
@@ -22,7 +25,7 @@ const RecipeDetail: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const { toast } = useToast();
-  const { getEffectiveRecipe } = useRecipe();
+  const { getEffectiveRecipe, addToRecentlyViewed } = useRecipe();
   
   useEffect(() => {
     if (slug) {
@@ -30,8 +33,20 @@ const RecipeDetail: React.FC = () => {
       if (foundRecipe) {
         // Get the user modified version if it exists
         const effectiveRecipe = getEffectiveRecipe(foundRecipe.id);
-        setRecipe(effectiveRecipe || foundRecipe);
-        document.title = `${effectiveRecipe?.title || foundRecipe.title} - Culinary Time Rifts`;
+        
+        if (effectiveRecipe) {
+          setRecipe(effectiveRecipe);
+          document.title = `${effectiveRecipe.title} - Culinary Time Rifts`;
+          
+          // Add to recently viewed
+          addToRecentlyViewed(effectiveRecipe.id);
+        } else {
+          setRecipe(foundRecipe);
+          document.title = `${foundRecipe.title} - Culinary Time Rifts`;
+          
+          // Add to recently viewed
+          addToRecentlyViewed(foundRecipe.id);
+        }
       } else {
         toast({
           title: "Recipe not found",
@@ -43,7 +58,7 @@ const RecipeDetail: React.FC = () => {
     }
     
     setIsLoading(false);
-  }, [slug, era, navigate, toast, getEffectiveRecipe]);
+  }, [slug, era, navigate, toast, getEffectiveRecipe, addToRecentlyViewed]);
   
   if (isLoading) {
     return <div className="flex items-center justify-center min-h-screen">Loading...</div>;
@@ -65,10 +80,20 @@ const RecipeDetail: React.FC = () => {
         <div className="max-w-4xl mx-auto">
           <RecipeHeader recipe={recipe} eraType={eraType} />
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+          <div className="mt-6 flex justify-between items-center">
+            <RecipeRating recipeId={recipe.id} eraType={eraType} />
+            <CookingMode recipeId={recipe.id} eraType={eraType} />
+          </div>
+          
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.4 }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6"
+          >
             <IngredientsSection ingredients={recipe.ingredients} eraType={eraType} />
             <InstructionsSection steps={recipe.steps} eraType={eraType} />
-          </div>
+          </motion.div>
           
           <NutritionSection 
             calories={recipe.calories}
