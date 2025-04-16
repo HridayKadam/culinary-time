@@ -10,6 +10,8 @@ import Cyberpunk from "./pages/Cyberpunk";
 import Apocalyptic from "./pages/Apocalyptic";
 import RecipeDetail from "./pages/RecipeDetail";
 import SecretRecipe from "./pages/SecretRecipe";
+import SearchResults from "./pages/SearchResults";
+import Favorites from "./pages/Favorites";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 
@@ -30,6 +32,9 @@ const App = () => (
           <Route path="/cyberpunk/:slug" element={<RecipeDetail />} />
           <Route path="/apocalyptic/:slug" element={<RecipeDetail />} />
           <Route path="/secret/:era/:slug" element={<SecretRecipe />} />
+          <Route path="/search" element={<SearchResults />} />
+          <Route path="/:era/search" element={<SearchResults />} />
+          <Route path="/favorites" element={<Favorites />} />
           <Route path="/about" element={<About />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
@@ -39,4 +44,3 @@ const App = () => (
 );
 
 export default App;
-

@@ -6,6 +6,7 @@ import { ArrowLeft, Clock, Users, ChefHat } from 'lucide-react';
 import Navigation from '../components/Navigation';
 import Ingredient from '../components/Ingredient';
 import RecipeStep from '../components/RecipeStep';
+import RecipeFavoriteButton from '../components/RecipeFavoriteButton';
 import Footer from '../components/Footer';
 import { getRecipeBySlug } from '../data/recipes';
 import { Recipe } from '../types/recipe';
@@ -133,9 +134,14 @@ const RecipeDetail: React.FC = () => {
             transition={{ duration: 0.6 }}
             className={`p-8 rounded-t-lg ${getHeaderClasses()}`}
           >
-            <h1 className={`text-3xl md:text-4xl font-bold mb-3 ${getTitleClasses()}`}>
-              {recipe.title}
-            </h1>
+            <div className="flex justify-between items-start">
+              <h1 className={`text-3xl md:text-4xl font-bold mb-3 ${getTitleClasses()}`}>
+                {recipe.title}
+              </h1>
+              
+              <RecipeFavoriteButton recipe={recipe} eraType={eraType} />
+            </div>
+            
             <p className="text-lg opacity-90 mb-6">{recipe.description}</p>
             
             <div className="flex flex-wrap gap-6">
@@ -193,6 +199,44 @@ const RecipeDetail: React.FC = () => {
               </div>
             </motion.div>
           </div>
+          
+          {/* Additional nutritional information if available */}
+          {(recipe.calories || recipe.protein || recipe.carbs || recipe.fat) && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+              className={`mt-6 p-6 rounded-lg ${getSectionClasses()}`}
+            >
+              <h2 className={`text-xl font-bold mb-4 ${getTitleClasses()}`}>Nutritional Information</h2>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+                {recipe.calories && (
+                  <div className="p-2 bg-background/20 rounded-md">
+                    <div className="text-lg font-semibold">{recipe.calories}</div>
+                    <div className="text-sm opacity-70">Calories</div>
+                  </div>
+                )}
+                {recipe.protein && (
+                  <div className="p-2 bg-background/20 rounded-md">
+                    <div className="text-lg font-semibold">{recipe.protein}</div>
+                    <div className="text-sm opacity-70">Protein</div>
+                  </div>
+                )}
+                {recipe.carbs && (
+                  <div className="p-2 bg-background/20 rounded-md">
+                    <div className="text-lg font-semibold">{recipe.carbs}</div>
+                    <div className="text-sm opacity-70">Carbs</div>
+                  </div>
+                )}
+                {recipe.fat && (
+                  <div className="p-2 bg-background/20 rounded-md">
+                    <div className="text-lg font-semibold">{recipe.fat}</div>
+                    <div className="text-sm opacity-70">Fat</div>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          )}
           
           {recipe.isSecret && (
             <motion.div
