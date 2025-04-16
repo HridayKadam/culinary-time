@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Recipe } from '../types/recipe';
 import RecipeFavorite from './RecipeFavorite';
 import { motion } from 'framer-motion';
+import { useRecipe } from '../context/RecipeContext';
 
 interface RecipeFavoriteButtonProps {
   recipe: Recipe;
@@ -12,6 +13,8 @@ interface RecipeFavoriteButtonProps {
 }
 
 const RecipeFavoriteButton: React.FC<RecipeFavoriteButtonProps> = ({ recipe, eraType }) => {
+  const { isFavorite } = useRecipe();
+  
   const getButtonClass = () => {
     if (eraType === 'medieval') {
       return "border-medieval hover:bg-medieval/20";
@@ -35,7 +38,7 @@ const RecipeFavoriteButton: React.FC<RecipeFavoriteButtonProps> = ({ recipe, era
         className={`flex items-center gap-2 bg-transparent ${getButtonClass()}`}
       >
         <RecipeFavorite recipeId={recipe.id} eraType={eraType} />
-        <span className="text-sm">Save Recipe</span>
+        <span className="text-sm">{isFavorite(recipe.id) ? 'Saved' : 'Save Recipe'}</span>
       </Button>
     </motion.div>
   );

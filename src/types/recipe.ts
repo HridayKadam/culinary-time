@@ -30,4 +30,12 @@ export interface Recipe {
   isSecret?: boolean;
   secretUnlockHint?: string;
   featured?: boolean;
+  userNotes?: string;
+  userModified?: boolean;
+}
+
+export interface UserRecipe extends Recipe {
+  originalId?: string; // Reference to original recipe if this is a user-modified version
+  createdAt: number;
+  lastModified: number;
 }

@@ -6,26 +6,29 @@ import { Heart, LayoutGrid } from 'lucide-react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import RecipeCard from '../components/RecipeCard';
-import { recipes } from '../data/recipes';
 import { Recipe } from '../types/recipe';
 import { Button } from '@/components/ui/button';
+import { useRecipe } from '../context/RecipeContext';
 
 const Favorites: React.FC = () => {
   const [favoriteRecipes, setFavoriteRecipes] = useState<Recipe[]>([]);
+  const { getFavorites, getEffectiveRecipe } = useRecipe();
   
   useEffect(() => {
     document.title = 'Favorite Recipes - Culinary Time Rifts';
     
-    // Get favorites from localStorage
-    const favorites = JSON.parse(localStorage.getItem('favoriteRecipes') || '[]');
+    // Get favorites and their recipes
+    const favorites = getFavorites();
     
-    // Filter recipes that match favorite IDs
-    const favoriteRecipesList = recipes.filter(recipe => 
-      favorites.includes(recipe.id)
-    );
+    // Get all recipe objects
+    const favoriteRecipesList: Recipe[] = [];
+    favorites.forEach(id => {
+      const recipe = getEffectiveRecipe(id);
+      if (recipe) favoriteRecipesList.push(recipe);
+    });
     
     setFavoriteRecipes(favoriteRecipesList);
-  }, []);
+  }, [getFavorites, getEffectiveRecipe]);
   
   return (
     <div className="min-h-screen flex flex-col bg-background">

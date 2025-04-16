@@ -8,11 +8,13 @@ import IngredientsSection from '../components/IngredientsSection';
 import InstructionsSection from '../components/InstructionsSection';
 import NutritionSection from '../components/NutritionSection';
 import SecretRecipeMessage from '../components/SecretRecipeMessage';
+import UserNotes from '../components/UserNotes';
 import Footer from '../components/Footer';
 import { getRecipeBySlug } from '../data/recipes';
 import { Recipe } from '../types/recipe';
 import { useToast } from '@/hooks/use-toast';
 import { getEraType, getContainerClasses } from '../utils/eraStyles';
+import { useRecipe } from '../context/RecipeContext';
 
 const RecipeDetail: React.FC = () => {
   const { era, slug } = useParams<{ era: string; slug: string }>();
@@ -20,13 +22,16 @@ const RecipeDetail: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { getEffectiveRecipe } = useRecipe();
   
   useEffect(() => {
     if (slug) {
       const foundRecipe = getRecipeBySlug(slug);
       if (foundRecipe) {
-        setRecipe(foundRecipe);
-        document.title = `${foundRecipe.title} - Culinary Time Rifts`;
+        // Get the user modified version if it exists
+        const effectiveRecipe = getEffectiveRecipe(foundRecipe.id);
+        setRecipe(effectiveRecipe || foundRecipe);
+        document.title = `${effectiveRecipe?.title || foundRecipe.title} - Culinary Time Rifts`;
       } else {
         toast({
           title: "Recipe not found",
@@ -38,7 +43,7 @@ const RecipeDetail: React.FC = () => {
     }
     
     setIsLoading(false);
-  }, [slug, era, navigate, toast]);
+  }, [slug, era, navigate, toast, getEffectiveRecipe]);
   
   if (isLoading) {
     return <div className="flex items-center justify-center min-h-screen">Loading...</div>;
@@ -72,6 +77,8 @@ const RecipeDetail: React.FC = () => {
             fat={recipe.fat}
             eraType={eraType}
           />
+          
+          <UserNotes recipeId={recipe.id} eraType={eraType} />
           
           <SecretRecipeMessage isSecret={!!recipe.isSecret} eraType={eraType} era={era || ''} />
         </div>

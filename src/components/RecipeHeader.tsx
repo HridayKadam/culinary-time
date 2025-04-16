@@ -1,12 +1,16 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Clock, Users, ChefHat, Award } from 'lucide-react';
+import { Clock, Users, ChefHat, Award, Copy, Edit } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import RecipeFavoriteButton from './RecipeFavoriteButton';
 import { Recipe } from '../types/recipe';
 import { getHeaderClasses, getTitleClasses } from '../utils/eraStyles';
+import { useRecipe } from '../context/RecipeContext';
+import { useNavigate } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
 
 interface RecipeHeaderProps {
   recipe: Recipe;
@@ -14,6 +18,33 @@ interface RecipeHeaderProps {
 }
 
 const RecipeHeader: React.FC<RecipeHeaderProps> = ({ recipe, eraType }) => {
+  const { duplicateRecipe } = useRecipe();
+  const navigate = useNavigate();
+  
+  const handleDuplicate = () => {
+    const duplicated = duplicateRecipe(recipe.id);
+    if (duplicated) {
+      setTimeout(() => {
+        navigate(`/edit/${duplicated.id}`);
+      }, 500);
+    }
+  };
+  
+  const handleEdit = () => {
+    if (recipe.userModified) {
+      // If it's a user recipe, navigate to edit
+      navigate(`/edit/${recipe.id}`);
+    } else {
+      // If it's an original recipe, duplicate first then navigate
+      const duplicated = duplicateRecipe(recipe.id);
+      if (duplicated) {
+        setTimeout(() => {
+          navigate(`/edit/${duplicated.id}`);
+        }, 500);
+      }
+    }
+  };
+  
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -58,7 +89,45 @@ const RecipeHeader: React.FC<RecipeHeaderProps> = ({ recipe, eraType }) => {
         </div>
         
         <div className="flex flex-col items-end gap-2">
-          <RecipeFavoriteButton recipe={recipe} eraType={eraType} />
+          <div className="flex items-center gap-2">
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={handleDuplicate}
+                    className={`bg-transparent border-${eraType} hover:bg-${eraType}/20`}
+                  >
+                    <Copy className="h-4 w-4" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Duplicate Recipe</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={handleEdit}
+                    className={`bg-transparent border-${eraType} hover:bg-${eraType}/20`}
+                  >
+                    <Edit className="h-4 w-4" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>{recipe.userModified ? 'Edit Recipe' : 'Make My Version'}</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            
+            <RecipeFavoriteButton recipe={recipe} eraType={eraType} />
+          </div>
           
           {recipe.difficulty === 'Hard' && (
             <motion.div 
@@ -69,6 +138,19 @@ const RecipeHeader: React.FC<RecipeHeaderProps> = ({ recipe, eraType }) => {
             >
               <Award size={16} />
               <span className="text-xs font-semibold">Advanced Recipe</span>
+            </motion.div>
+          )}
+          
+          {recipe.userModified && (
+            <motion.div 
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.5, type: "spring" }}
+              className="flex items-center gap-1 text-rift"
+            >
+              <Badge variant="outline" className="text-xs border-rift text-rift">
+                My Recipe
+              </Badge>
             </motion.div>
           )}
         </div>
